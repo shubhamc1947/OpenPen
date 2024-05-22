@@ -1,0 +1,337 @@
+$bgcolor: #cde8e5;
+$extracolor: #7ab2b2;
+$darkbg: #4d869c;
+$lightcolor: #eef7ff;
+
+.blogpost {
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  padding: 1rem;
+  text-align: justify;
+  display: flex;
+  justify-content: center;
+  // align-items: stretch;
+  // justify-content: stretch;
+  gap: 2rem;
+  .imgcont {
+    flex: 2;
+    position: relative;
+    height: 350px;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      height: 100%;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 10px;
+
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background-color: $darkbg;
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    .title {
+      font-size: 40px;
+    }
+    .authorinfo {
+      margin-block: 1rem;
+      display: flex;
+      align-items: center;
+
+      .colorbox {
+        background-color: $darkbg;
+        height: 90%;
+        flex-grow: 1; // Allows the colorbox to take up remaining space
+        border-radius: 8px;
+      }
+
+      .authinfocont {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+          width: 50px;
+        }
+        .namendate{
+            display: flex;
+            gap:0.5rem;
+            span {
+                white-space: nowrap; // Prevents line break
+            }
+        }
+        
+      }
+    }
+
+    .desc {
+      font-size: 20px;
+    }
+    .btncont {
+      margin-top: 2rem;
+      text-align: right;
+      .readmore {
+        padding: 8px 16px;
+        font-size: 1.2rem;
+        border: none;
+        outline: none;
+        background-color: $darkbg;
+        border: 1px solid $darkbg;
+        border-radius: 7px;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        &:hover {
+          background-color: white;
+          border: 1px solid $darkbg;
+          color: #333;
+        }
+      }
+    }
+  }
+
+  &:nth-child(2n + 1) {
+    flex-direction: row-reverse;
+    .imgcont {
+      &::after {
+        background-color: $extracolor;
+      }
+    }
+    .content {
+      .btncont{
+        text-align: left;
+        .readmore {
+          background-color: $extracolor;
+          border: 1px solid $extracolor;
+          transition: all 0.4s ease;
+  
+          &:hover {
+            background-color: white;
+            border: 1px solid $extracolor;
+            color: #333;
+          }
+        }
+      }
+      .colorbox {
+        background-color: $extracolor;
+      }
+    }
+  }
+}
+
+@media (max-width: 1150px) {
+  .blogpost {
+    gap: 1rem;
+    .imgcont {
+      flex: 1;
+      img {
+      }
+      &::after {
+      }
+    }
+    .content {
+      flex: 2;
+      .title {
+        font-size: 35px;
+      }
+      .authorinfo {
+        margin-block: 0.8rem;
+        .colorbox {
+        }
+        div {
+          gap: 0.8rem;
+          img {
+            width: 40px;
+          }
+        }
+      }
+      .desc {
+        font-size: 18px;
+      }
+      .btncont {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .blogpost {
+    padding: 0.5rem;
+    .imgcont {
+      flex: 3;
+      img {
+      }
+      &::after {
+      }
+    }
+    .content {
+      flex: 5;
+      .title {
+        font-size: 30px;
+      }
+      .authorinfo {
+        margin-block: 0.8rem;
+        .colorbox {
+          height: 80%;
+        }
+        div {
+          gap: 0.8rem;
+          img {
+            width: 40px;
+          }
+        }
+      }
+      .desc {
+        font-size: 18px;
+      }
+      .btncont {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .blogpost {
+    .imgcont {
+      flex: 3;
+      height: 300px;
+      img {
+      }
+      &::after {
+      }
+    }
+    .content {
+      flex: 5;
+      .title {
+        font-size: 28px;
+      }
+      .authorinfo {
+        margin-block: 0.6rem;
+        .colorbox {
+        }
+        div {
+          gap: 0.6rem;
+          img {
+            width: 35px;
+          }
+        }
+      }
+      .desc {
+        font-size: 16px;
+      }
+      .btncont {
+        margin-top: 0.8rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .blogpost {
+    padding: 1rem;
+    .imgcont {
+      display: none;
+    }
+    .content {
+      flex: 5;
+      .title {
+        font-size: 28px;
+      }
+      .authorinfo {
+        margin-block: 0.6rem;
+        .colorbox {
+        }
+        div {
+          gap: 0.6rem;
+          img {
+            width: 35px;
+          }
+        }
+      }
+      .desc {
+        font-size: 16px;
+      }
+      .btncont {
+        margin-top: 0.8rem;
+        text-align: right;
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .blogpost {
+    .content {
+      .title {
+        font-size: 25px;
+      }
+
+      .desc {
+        font-size: 16px;
+      }
+      .btncont {
+        margin-top: 0.6rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 435px) {
+    .blogpost {
+        .content {
+            .title {
+                font-size: 25px;
+            }
+            .authorinfo {
+                .colorbox {
+                    display: none;
+                }
+
+                .authinfocont {
+                    .namendate{
+                        flex-direction: column;
+                        gap:0.1rem;
+                    }
+                }
+            }
+            .desc {
+                font-size: 16px;
+            }
+            .btncont {
+                margin-top: 0.6rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .blogpost {
+        padding:0.7rem;
+        .content {
+            .title {
+                font-size: 22px;
+            }
+           
+            .desc {
+                font-size: 14px;
+            }
+            .btncont {
+                .readmore {
+                  padding: 4px 8px;
+                  font-size: 0.8rem;
+                  border-radius: 5px;
+                }
+              }
+        }
+    }
+}

@@ -1,0 +1,220 @@
+$bgcolor: #cde8e5;
+$extracolor: #7ab2b2;
+$darkbg: #4d869c;
+$lightcolor: #eef7ff;
+
+.singleblog {
+  padding-top: 140px;
+  padding-bottom: 100px;
+
+  display: flex;
+  justify-content: center;
+  .container {
+    display: flex;
+    justify-content: center;
+    width: 1300px;
+    gap: 1rem;
+    text-align: justify;
+    .leftcont {
+      flex: 5;
+
+      .img {
+        img {
+          width: 100%;
+
+          object-position: center;
+          object-fit: cover;
+          max-height: 400px;
+          // width:300px;
+        }
+      }
+      .userinfo {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .user {
+          display: flex;
+          //   justify-content: center;
+          align-items: center;
+          gap: 1rem;
+          img {
+            width: 40px;
+          }
+        }
+        .editopt {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          span {
+            img {
+              align-content: center;
+              height: 25px;
+              cursor: pointer;
+            }
+          }
+          .del {
+            position: relative;
+            &::after {
+              content: "Delete";
+              position: absolute;
+              z-index: 1;
+              top: -30px;
+              font-size: 1.2rem;
+              background-color: $darkbg;
+              color: #fff;
+              padding: 3px 5px;
+              border-radius: 4px;
+              opacity: 0;
+            }
+            &:hover {
+              &::after {
+                opacity: 1;
+              }
+            }
+          }
+          .edit {
+            position: relative;
+            &::after {
+              content: "Edit";
+              position: absolute;
+              z-index: 1;
+
+              top: -30px;
+              font-size: 1.2rem;
+              background-color: $darkbg;
+              color: #fff;
+              padding: 3px 5px;
+              border-radius: 4px;
+              opacity: 0;
+            }
+            &:hover {
+              &::after {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+      .title {
+        margin-top: 1rem;
+        font-size: 30px;
+      }
+      .descrip {
+        margin-top: 1rem;
+        line-height: 1.9rem;
+        font-size: 1.2rem;
+      }
+    }
+    .rightcont {
+      flex: 2;
+      .rightconthead{
+        font-weight: 600;
+        text-align: right;
+        font-size: 1.5rem;
+      }
+      position: relative;
+      .cont {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        // position: -webkit-sticky;
+        // position: sticky;
+        // top: 90px;
+        // z-index: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 1378px) {
+  .singleblog {
+    .container {
+      width: 1200px;
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .singleblog {
+    .container {
+      width: 1100px;
+    }
+  }
+}
+
+@media (max-width: 1150px) {
+  .singleblog {
+    .container {
+      width: 1000px;
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .singleblog {
+    .container {
+      width: 900px;
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .singleblog {
+    .container {
+      width: 100%;
+      padding: 10px 30px;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .singleblog {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    .container {
+      flex-direction: column;
+      gap:3rem;
+      .leftcont {
+        .img {
+          img {
+            width: 100%;
+            object-position: center;
+            object-fit: cover;
+            max-height: 400px;
+            // width:300px;
+          }
+        }
+        .title {
+          margin-top: 1rem;
+          font-size: 25px;
+        }
+        .descrip {
+          line-height: 1.5rem;
+        }
+      }
+      .rightcont {
+        
+        .cont {
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 384px) {
+  .singleblog {
+    .container {
+      width: 100%;
+      padding: 10px 15px;
+
+    }
+  }
+}

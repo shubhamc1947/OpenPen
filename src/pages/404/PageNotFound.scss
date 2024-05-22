@@ -1,0 +1,50 @@
+$bgcolor: #cde8e5;
+$extracolor: #7ab2b2;
+$darkbg: #4d869c;
+$lightcolor: #eef7ff;
+
+
+
+.pagenotfound {
+    background-color: $bgcolor;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        h1{
+            font-size: 3rem;
+            font-weight: 500;
+            ;
+        }
+        p{
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-align: center;
+        }
+    }
+    
+  }
+  
+
+  @media (max-width:380px) {
+    
+.pagenotfound {
+    
+    .container{
+        
+        h1{
+            font-size: 2rem;
+           
+        }
+        p{
+            font-size: 1rem;
+        }
+    }
+    
+  }
+  }
