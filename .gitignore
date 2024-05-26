@@ -6,3 +6,8 @@ dist
 .env
 # Logs
 
+
+
+./api/node_modules
+./api/dist
+./api/.env
