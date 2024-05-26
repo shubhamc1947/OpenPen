@@ -19,13 +19,13 @@ const SingleBlog = () => {
 
   const id = useLocation().pathname.split("/")[2];
   // console.log(id)
-  const [blogPost, setBlogPost] = useState([]);
+  const [blogPost, setBlogPost] = useState({});
 
   const navigate = useNavigate();
   const handleDelete = async () => {
     if(confirm("Are you Sure you want to delete ?")){
       try {
-        await axios.delete(`${import.meta.env.VITE_API_URL}/api/posts/${id}`, { withCredentials: true });
+        await axios.delete(`${import.meta.env.VITE_APP_API_URL}/api/posts/${id}`, { withCredentials: true });
         toast.warning("Data is Deleted")
         setTimeout(() => {
           navigate("/");
@@ -41,7 +41,7 @@ const SingleBlog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/posts/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_APP_API_URL}/api/posts/${id}`);
         setBlogPost(res.data);
         // console.log(res.data)
       } catch (err) {
@@ -55,40 +55,42 @@ const SingleBlog = () => {
     return { __html: DOMPurify.sanitize(html) };
   };
 // console.log(blogPost);
+// console.log(currentUser)
   return (
     <div className="singleblog">
       <div className="container">
         <div className="leftcont">
           <div className="img">
-            <img src={`../upload/${blogPost[0]?.postImg}`} alt="Post cover" />
+            <img src={`../post/${blogPost?.img}`} alt="Post cover" />
           </div>
           <div className="userinfo">
             <div className="user">
               
-              <img src={`../profile/${blogPost[0]?.userImg}`} alt="Author" />
-              <span>{blogPost[0]?.username}</span>
-              <span>{blogPost[0] ? moment(blogPost[0].date).fromNow() : ""}</span>
+              <img src={`../profile/${blogPost.uid?.img}`} className="borderradius" alt="Author" />
+              <span>{blogPost.uid?.username}</span>
+              <span>{blogPost ? moment(blogPost.date).fromNow() : ""}</span>
             </div>
-            {blogPost[0] && currentUser &&  currentUser.username === blogPost[0].username && (
+            
+            {blogPost && currentUser &&  blogPost.uid && currentUser.username === blogPost.uid.username && (
               <div className="editopt">
                 <span className="del">
                   <img onClick={handleDelete} src={delimg} alt="Delete" />
                 </span>
                 <span className="edit">
-                  <Link to={`/writeblog?edit=${blogPost[0]?.postId}`} state={blogPost[0]}>
+                  <Link to={`/writeblog?edit=${blogPost?._id}`} state={blogPost}>
                     <img src={editimg} alt="Edit" />
                   </Link>
                 </span>
               </div>
             )}
           </div>
-          <div className="title">{blogPost[0]?.title}</div>
-          <div className="descrip" dangerouslySetInnerHTML={createMarkup(blogPost[0]?.description)}></div>
+          <div className="title">{blogPost?.title}</div>
+          <div className="descrip" dangerouslySetInnerHTML={createMarkup(blogPost?.description)}></div>
         </div>
         <div className="rightcont">
           <div className="rightconthead">You might like ...</div>
           <div className="cont">
-            <RecommedPostWrap catValue={blogPost[0]?.cat} />
+            <RecommedPostWrap catValue={blogPost?.cat} />
           </div>
         </div>
       </div>

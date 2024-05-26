@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // Include credentials to allow cookies
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, input, {
+      const res = await axios.post(`${import.meta.env.VITE_APP_API_URL}/api/login`, input, {
         withCredentials: true, //ye nhi likhne pe cookie backend se frontend shi nhi aa rhi thi
       });
 

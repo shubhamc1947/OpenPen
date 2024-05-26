@@ -19,7 +19,7 @@ const WriteBlog = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/upload`, formData, { withCredentials: true });
+      const res = await axios.post(`${import.meta.env.VITE_APP_API_URL}/api/upload`, formData, { withCredentials: true });
        return res.data;
     } catch (err) {
       console.log(err);
@@ -36,14 +36,14 @@ const WriteBlog = () => {
     // }
     try {
       if (state) {
-        await axios.put(`${import.meta.env.VITE_API_URL}/api/posts/${state.postId}`, {
+        await axios.put(`${import.meta.env.VITE_APP_API_URL}/api/posts/${state._id}`, {
           title,
           desc: value,
           cat,
           img: file ? imgUrl : "",
         }, { withCredentials: true });
       } else {
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/posts/`, {
+        await axios.post(`${import.meta.env.VITE_APP_API_URL}/api/posts/`, {
           title,
           desc: value,
           cat,

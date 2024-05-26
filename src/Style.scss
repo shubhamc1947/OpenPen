@@ -3,3 +3,15 @@
     text-decoration: none;
     color:inherit;
 }
+
+.borderradius{
+    border-radius: 50%;
+}
+
+.loader{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // Adjust this to fit your layout
+    
+}

@@ -12,7 +12,7 @@ const RecommedPostWrap = ({ catValue }) => {
     const fetchData = async (e) => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/posts/${cat}`
+          `${import.meta.env.VITE_APP_API_URL}/api/posts/${cat}`
         );
         if (Array.isArray(res.data)) {
           setrecommdedPost(res.data);

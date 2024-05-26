@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const RecommedPost = ({ post }) => {
   // Ensure post is defined before accessing its properties
   if (!post) return null;
-
+  // console.log(post)
   const createMarkup = (html) => {
     return { __html: DOMPurify.sanitize(html) };
   };
@@ -14,10 +14,10 @@ const RecommedPost = ({ post }) => {
   return (
     <div className="recommedpost">
       <div className="img">
-        <img src={`../upload/${post.postImg}`} alt="Post Image" />
+        <img src={`../post/${post.postImg}`} alt="Post Image" />
       </div>
       <div className="user">
-        <img src={`../public/profile/${post.userImg}`} alt="Author" />
+        <img src={`../public/profile/${post.userImg}`} className="borderradius" alt="Author" />
         <span>{post.username}</span>
         <span>Date: {moment(post.date).fromNow()}</span>
       </div>

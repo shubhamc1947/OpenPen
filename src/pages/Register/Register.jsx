@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import "./Register.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const Register = () => {
-
   const navigate = useNavigate();
-
   const [errmsg, setErrmsg] = useState(null);
   const [msg, setMsg] = useState(null);
-
   const [input, setInput] = useState({
     email: "",
     username: "",
@@ -25,45 +23,37 @@ const Register = () => {
     try {
       const formData = new FormData();
       formData.append("profile", file);
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/profile`, formData, { withCredentials: true });
-       return res.data.filename;
+      const res = await axios.post(`${import.meta.env.VITE_APP_API_URL}/api/profile`, formData, { withCredentials: true });
+      return res.data.filename;
     } catch (err) {
       console.log(err);
     }
   };
 
-
-
-  // console.log(input)
   const handleChange = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const imgUrl = await upload();
 
-
-    //checking for the empty inputs
     if (!input.email || !input.username || !input.password || !file) {
       setErrmsg("All fields are required.");
       return;
     }
 
-    // Update input state with the image URL
     const updatedInput = { ...input, img: imgUrl };
 
     try {
-      const res = await axios.post("http://localhost:8800/api/register", updatedInput);
-      // console.log(res);
+      const res = await axios.post(`${import.meta.env.VITE_APP_API_URL}/api/register`, updatedInput);
       setErrmsg(null);
-      setMsg(res.data);
+      setMsg(res.data.message);
       setTimeout(() => {
         navigate("/login");
       }, 2000);
-     
     } catch (err) {
-     
+      // console.log(err)
       setErrmsg(err.response.data);
       setMsg(null);
     }

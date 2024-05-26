@@ -50,7 +50,7 @@ const Navbar = () => {
               className="userdiv"
               onClick={() => setShowUserInfo(!showUserInfo)}
             >
-              <img src={`./profile/${currentUser.img}`} alt="" />
+              <img src={`./profile/${currentUser.img}`} className="borderradius" alt="" />
               <span>{currentUser?.username}</span>
               {showUserInfo ? (
                 <div className="usercont">
