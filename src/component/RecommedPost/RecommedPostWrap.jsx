@@ -16,6 +16,7 @@ const RecommedPostWrap = ({ catValue }) => {
         );
         if (Array.isArray(res.data)) {
           setrecommdedPost(res.data);
+          // console.log(res.data)
         } else {
           console.error("API response is not an array:", res.data);
           setrecommdedPost([]);
