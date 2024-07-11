@@ -11,7 +11,7 @@ const BlogPost = ({ post, loading }) => {
   const createMarkup = (html) => {
     return { __html: DOMPurify.sanitize(html) };
   };
-
+console.log(post)
   return (
     <div className="blogpost">
       <div className="imgcont">
@@ -57,7 +57,7 @@ const BlogPost = ({ post, loading }) => {
           {loading ? (
             <Skeleton width={100} height={40} />
           ) : (
-            <Link to={`/singleblog/${post?._id}`} className="link readmore">
+            <Link to={`/singleblog/${post?.postId}`} className="link readmore">
               Read More
             </Link>
           )}

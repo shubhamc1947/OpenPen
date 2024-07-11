@@ -5,45 +5,25 @@ import User from '../models/User.model.js';
 // Get all posts, optionally filtering by category
 export const getPosts = async (req, res) => {
   try {
-    const matchStage = {
-      $match: req.query.cat ? { cat: req.query.cat } : {} // Filter by category if provided
-    };
+    const query = req.query.cat ? { cat: req.query.cat } : {};
 
-    const lookupStage = {
-      $lookup: {
-        from: 'users', // Collection to join
-        localField: 'uid', // Field from the 'posts' collection
-        foreignField: '_id', // Field from the 'users' collection
-        as: 'user' // Output array field name
-      }
-    };
-
-    const unwindStage = { $unwind: '$user' }; // Unwind the 'user' array
-
-    const projectStage = {
-      $project: {
-        postId: '$_id', // Changed 'id' to '_id'
-        title: '$title',
-        description: '$description',
-        postImg: '$img',
-        date: '$date',
-        userId: '$user._id',
-        username: '$user.username',
-        email: '$user.email',
-        userImg: '$user.img',
-        cat: '$cat'
-      }
-    };
-
-    const pipeline = [
-      matchStage,
-      lookupStage,
-      unwindStage,
-      projectStage
-    ];
-
-    const posts = await Post.aggregate(pipeline);
-    res.status(200).json(posts);
+    const posts = await Post.find(query)
+      .populate('uid', 'username email img') // Populate user details
+      .select('_id title description img date cat uid'); // Select required fields
+    const formattedPosts = posts.map(post => ({
+      postId: post._id,
+      title: post.title,
+      description: post.description,
+      postImg: post.img,
+      date: post.date,
+      userId: post.uid._id,
+      username: post.uid.username,
+      email: post.uid.email,
+      userImg: post.uid.img,
+      cat: post.cat
+    }));
+    // console.log(formattedPosts)
+    res.status(200).json(formattedPosts);
   } catch (error) {
     console.error("Database error:", error);
     res.status(500).send("An error occurred while fetching posts.");
