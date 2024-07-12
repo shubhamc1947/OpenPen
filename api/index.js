@@ -14,16 +14,6 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// middlewares
-
-// CORS configuration
-// const corsOptions = {
-//   origin: process.env.FRONTEND_URL, // Replace with your frontend URL
-//   credentials: true, // This allows cookies to be sent and received
-// };
-
-
-// app.use(cors(corsOptions));
 
 app.use(cors({
   origin: process.env.FRONTEND_URL, // Update with your frontend URL
@@ -36,7 +26,7 @@ app.use(express.json());
 // Upload image function for blog post
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const uploadPath = "../client/public/post";
+    const uploadPath = "../public/post";
     fs.mkdirSync(uploadPath, { recursive: true }); // Create folder if it doesn't exist
     cb(null, uploadPath);
   },
@@ -55,7 +45,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 // Upload image function for user's profile pic
 const storage2 = multer.diskStorage({
   destination: function (req, file, cb) {
-    const uploadPath = "../client/public/profile";
+    const uploadPath = "../public/profile";
     fs.mkdirSync(uploadPath, { recursive: true }); // Create folder if it doesn't exist
     cb(null, uploadPath);
   },

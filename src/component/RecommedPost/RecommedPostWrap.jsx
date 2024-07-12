@@ -14,8 +14,8 @@ const RecommedPostWrap = ({ catValue }) => {
         const res = await axios.get(
           `${import.meta.env.VITE_APP_API_URL}/api/posts/${cat}`
         );
-        if (Array.isArray(res.data)) {
-          setrecommdedPost(res.data);
+        if (Array.isArray(res.data.posts)) {
+          setrecommdedPost(res.data.posts);
           // console.log(res.data)
         } else {
           console.error("API response is not an array:", res.data);

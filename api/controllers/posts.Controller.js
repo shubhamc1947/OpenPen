@@ -2,14 +2,21 @@ import jwt from 'jsonwebtoken';
 import Post from '../models/Post.model.js';
 import User from '../models/User.model.js';
 
-// Get all posts, optionally filtering by category
+
+// Get all posts with pagination, optionally filtering by category
 export const getPosts = async (req, res) => {
   try {
-    const query = req.query.cat ? { cat: req.query.cat } : {};
+    const { page = 1, limit = 3, category } = req.query;
+    console.log(req.query,page,limit)
 
-    const posts = await Post.find(query)
-      .populate('uid', 'username email img') // Populate user details
-      .select('_id title description img date cat uid'); // Select required fields
+    const querys = category ? { cat:category } : {};
+    const posts = await Post.find(querys)
+      .populate('uid', 'username email img')
+      .skip((page - 1) * limit)
+      .limit(parseInt(limit));
+
+    const totalPosts = await Post.countDocuments(querys);
+
     const formattedPosts = posts.map(post => ({
       postId: post._id,
       title: post.title,
@@ -22,13 +29,18 @@ export const getPosts = async (req, res) => {
       userImg: post.uid.img,
       cat: post.cat
     }));
-    // console.log(formattedPosts)
-    res.status(200).json(formattedPosts);
+// console.log(formattedPosts)
+    res.status(200).json({
+      posts: formattedPosts,
+      totalPages: Math.ceil(totalPosts / limit),
+      currentPage: parseInt(page)
+    });
   } catch (error) {
     console.error("Database error:", error);
     res.status(500).send("An error occurred while fetching posts.");
   }
 };
+
 
 // Get a single post by ID
 export const getPost = async (req, res) => {
@@ -87,6 +99,7 @@ export const deletePost = async (req, res) => {
 
 // Update a post
 export const updatePost = async (req, res) => {
+  console.log(req.body)
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
 

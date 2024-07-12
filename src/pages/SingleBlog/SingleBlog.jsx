@@ -10,13 +10,14 @@ import DOMPurify from "dompurify";
 
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import SkeletonSingleBlog from '../../component/SkeletonSingleBlog/SkeletonSingleBlog'
 
 // images
 import delimg from "../../../public/img/delete.png";
 import editimg from "../../../public/img/edit.png";
 
 const SingleBlog = () => {
-
+  const [loading, setLoading] = useState(true)
   const id = useLocation().pathname.split("/")[2];
   // console.log(id)
   const [blogPost, setBlogPost] = useState({});
@@ -43,6 +44,7 @@ const SingleBlog = () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_APP_API_URL}/api/posts/${id}`);
         setBlogPost(res.data);
+        setLoading(false)
         // console.log(res.data)
       } catch (err) {
         console.log(err);
@@ -56,6 +58,9 @@ const SingleBlog = () => {
   };
 // console.log(blogPost);
 // console.log(currentUser)
+if(loading){
+  return <SkeletonSingleBlog/>
+}
   return (
     <div className="singleblog">
       <div className="container">
@@ -90,6 +95,7 @@ const SingleBlog = () => {
         <div className="rightcont">
           <div className="rightconthead">You might like ...</div>
           <div className="cont">
+            {console.log(blogPost?.cat)}
             <RecommedPostWrap catValue={blogPost?.cat} />
           </div>
         </div>

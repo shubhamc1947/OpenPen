@@ -13,15 +13,11 @@ $lightcolor: #eef7ff;
     max-width: 1300px;
     display: flex;
     flex-direction: column;
-    gap: 100px;
-    .emptydatacont {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 60vh;
-      font-size: 3rem;
-      // text-align: center;
-      // padding-block: 2rem;
+    gap: 70px;
+    
+    .seenall{
+      color: #4d869c;
+      text-align:center;
     }
   }
 }
@@ -73,7 +69,7 @@ $lightcolor: #eef7ff;
     padding-bottom: 100px;
 
     .container {
-      gap: 70px;
+      gap: 60px;
       .emptydatacont {
       }
     }
