@@ -11,8 +11,6 @@ This project is a blog post application built using React, Express, and MongoDB.
 - [Technologies Used](#technologies-used)
 - [Setup](#setup)
 - [Usage](#usage)
-- [Components](#components)
-- [Styling](#styling)
 - [License](#license)
 
 ## Features
