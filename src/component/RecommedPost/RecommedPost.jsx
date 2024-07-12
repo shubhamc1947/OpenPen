@@ -17,7 +17,7 @@ const RecommedPost = ({ post }) => {
         <img src={`../post/${post.postImg}`} alt="Post Image" />
       </div>
       <div className="user">
-        <img src={`../public/profile/${post.userImg}`} className="borderradius" alt="Author" />
+        <img src={`../profile/${post.userImg}`} className="borderradius" alt="Author" />
         <span>{post.username}</span>
         <span>Date: {moment(post.date).fromNow()}</span>
       </div>
