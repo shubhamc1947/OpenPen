@@ -79,4 +79,3 @@ This project is a blog post application built using React, Express, and MongoDB.
 ## License
 
 This project is licensed under the MIT License.
-```
