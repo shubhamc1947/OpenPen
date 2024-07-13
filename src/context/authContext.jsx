@@ -19,7 +19,7 @@ export const AuthContexProvider = ({ children }) => {
   const logout = async (inputs) => {
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/logout`,
+        `${import.meta.env.VITE_APP_API_URL}/api/logout`,
         {},
         {
           withCredentials: true, //must for handling cooking and deleting it 
