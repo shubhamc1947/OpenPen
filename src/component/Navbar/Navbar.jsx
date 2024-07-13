@@ -16,7 +16,8 @@ const Navbar = () => {
     }, 4000);
   }
   const { currentUser, logout } = useContext(AuthContext);
-  // console.log(currentUser);
+
+  console.log(currentUser);
   return (
     <div className="navbar">
       <div className="container">
@@ -36,12 +37,6 @@ const Navbar = () => {
           <Link className="link" to="/?cat=technology">
             TECHNOLOGY
           </Link>
-          <Link className="link" to="/?cat=cinema">
-            CINEMA
-          </Link>
-          <Link className="link" to="/?cat=design">
-            DESIGN
-          </Link>
           <Link className="link" to="/?cat=food">
             FOOD
           </Link>
@@ -50,7 +45,7 @@ const Navbar = () => {
               className="userdiv"
               onClick={() => setShowUserInfo(!showUserInfo)}
             >
-              <img src={`./profile/${currentUser.img}`} className="borderradius" alt="" />
+              <img src={`${currentUser.img}`} className="borderradius" alt="" />
               <span>{currentUser?.username}</span>
               {showUserInfo ? (
                 <div className="usercont">
@@ -75,7 +70,7 @@ const Navbar = () => {
               className="userdiv"
               onClick={() => setShowUserInfo(!showUserInfo)}
             >
-              <img src={`./profile/${currentUser.img}`} alt="" />
+              <img src={`${currentUser.img}`} alt="" />
               <span>{currentUser?.username}</span>
               {showUserInfo ? (
                 <div className="usercont">
@@ -110,12 +105,6 @@ const Navbar = () => {
               </Link>
               <Link className="link" to="/?cat=technology">
                 TECHNOLOGY
-              </Link>
-              <Link className="link" to="/?cat=cinema">
-                CINEMA
-              </Link>
-              <Link className="link" to="/?cat=design">
-                DESIGN
               </Link>
               <Link className="link" to="/?cat=food">
                 FOOD

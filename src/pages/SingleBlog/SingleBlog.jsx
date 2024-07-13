@@ -66,12 +66,12 @@ if(loading){
       <div className="container">
         <div className="leftcont">
           <div className="img">
-            <img src={`../post/${blogPost?.img}`} alt="Post cover" />
+            <img src={`${blogPost?.img}`} alt="Post cover" />
           </div>
           <div className="userinfo">
             <div className="user">
               
-              <img src={`../profile/${blogPost.uid?.img}`} className="borderradius" alt="Author" />
+              <img src={`${blogPost.uid?.img}`} className="borderradius" alt="Author" />
               <span>{blogPost.uid?.username}</span>
               <span>{blogPost ? moment(blogPost.date).fromNow() : ""}</span>
             </div>

@@ -15,7 +15,7 @@ const BlogPost = ({ post }) => {
   return (
     <div className="blogpost">
       <div className="imgcont">
-        <img src={`../post/${post?.postImg}`} alt="Post cover" />
+        <img src={`${post?.postImg}`} alt="Post cover" />
       </div>
       <div className="content">
         <div className="title">
@@ -24,7 +24,7 @@ const BlogPost = ({ post }) => {
         <div className="authorinfo">
           <div className="colorbox"></div>
           <div className="authinfocont">
-            <img src={`./profile/${post.userImg}`} alt="Author" className="borderradius" />
+            <img src={`${post.userImg}`} alt="Author" className="borderradius" />
             <div className="namendate">
               <span>{post?.username}</span>
               <span>

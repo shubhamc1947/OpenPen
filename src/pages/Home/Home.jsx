@@ -69,8 +69,8 @@ const Home = () => {
   return (
     <div className="home">
       <div className="container">
-        {blogPosts.map((post) => (
-          <BlogPost post={post} key={post._id} />
+        {blogPosts.map((post,idx) => (
+          <BlogPost post={post} key={idx} />
         ))}
         {loading && <><BlogPostSkeleton /><BlogPostSkeleton /><BlogPostSkeleton /></>}
         {!hasMore && (

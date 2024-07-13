@@ -4,15 +4,16 @@ import User from '../models/User.model.js';
 
 export const register = async (req, res) => {
   try {
+    console.log("Incoming registration request:", req.body);
+
     // Check existing user
-    // console.log("hello")
-    // console.log(req.body)
     const existingUser = await User.findOne({
       $or: [{ email: req.body.email }, { username: req.body.username }],
     });
 
     if (existingUser) {
-      return res.status(409).json("User already exists!!!");
+      console.log("User already exists:", existingUser);
+      return res.status(409).json({ error: "User already exists!!!" });
     }
 
     // Encrypt the password
@@ -28,9 +29,10 @@ export const register = async (req, res) => {
     });
 
     await newUser.save();
-    res.status(200).json("User has been created.");
+    res.status(200).json({ message: "User has been created." });
   } catch (err) {
-    res.status(500).json(err);
+    console.error("Error during registration:", err);
+    res.status(500).json({ error: "Internal Server Error", details: err.message });
   }
 };
 
